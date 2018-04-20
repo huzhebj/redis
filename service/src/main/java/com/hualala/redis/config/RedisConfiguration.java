@@ -17,12 +17,12 @@ import redis.clients.jedis.JedisPoolConfig;
  * Created by xiangbin on 2016/10/19.
  */
 @Configuration
-public class SmallFlowRedisConfiguration {
+public class RedisConfiguration {
 
-    private Logger logger = LoggerFactory.getLogger(SmallFlowRedisConfiguration.class);
+    private Logger logger = LoggerFactory.getLogger(RedisConfiguration.class);
 
     @Autowired
-    private SmallFlowRedisProperties smallFlowRedisProperties;
+    private RedisProperties smallFlowRedisProperties;
 
     @Bean(name = "smallFlowRedisConnectionFactory")
     public JedisConnectionFactory smallFlowRedisConnectionFactory() {

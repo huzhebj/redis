@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @lombok.Data
 @Component
 @ConfigurationProperties
-public class SmallFlowRedisProperties {
+public class RedisProperties {
 
     @Value("${smallflow.redis.host}")
     private String host;
