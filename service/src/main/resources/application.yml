@@ -1,0 +1,78 @@
+spring:
+  profiles.active: local
+server:
+  port: 8881
+
+---
+spring:
+  profiles: local
+  aop:
+    auto: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  datasource:
+    url: jdbc:mysql://dohko.mysql.001.master.hualala.com:3306/db_shop?autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false&allowMultiQueries=true&statementInterceptors=brave.mysql.TracingStatementInterceptor
+    username: myshopdev
+    password: mydev@pwd
+    driver-class-name: com.mysql.jdbc.Driver
+    initial-size: 5
+    max-active: 30
+    min-idle: 2
+    validation-query: SELECT 1
+    test-on-borrow: true
+    test-while-idle: true
+
+  #若不添加redis的配置，会报错"Cannot get Jedis connection; nested exception is redis.clients.jedis.exceptions.JedisConnectionException"
+  redis:
+    database: 0
+    host: dohko.redis.hualala.com
+    port: 6379
+    pool:
+      max-idle: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 10000
+
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 172.16.0.29
+    port: 5672
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+
+grpc:
+  port: 6566
+  client:
+     hosts:
+        shop_biz: localhost:6566
+        shop_base: dohko.shop.service.hualala.com:31503
+        tax: dohko.service.tax.hualala.com:31517
+        promotion: dohko.promotion.service21.hualala.com:31599
+        wechat: dohko.wechat.service.hualala.com:31558
+
+smallflow:
+  redis:
+    host: 172.16.2.54
+    port: 6379
+    db: 11
+    pool:
+      maxActive: 100
+      maxIdle: 100
+      minIdle: 80
+      maxWait: 10000
+
+endpoints:
+  enabled: false
+  health:
+     enabled: true
+     time-to-live: 5000
+core:
+  zipkin:
+    url: http://dohko.zipkin.hualala.com/api/v2/spans
+    serviceName: shop-biz-service
+    traceSampler: 1.0
+    enable: true

@@ -1,0 +1,11 @@
+.idea/
+*.iml
+interface/target/
+service/target/
+interface/src/main/java/com/hualala/app/shop/biz/bean/grpc/*
+interface/src/main/java/com/hualala/app/shop/biz/grpc/*
+interface/src/main/java/TestCase.java
+.arcconfig
+*.swp
+
+
