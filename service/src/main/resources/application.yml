@@ -24,6 +24,13 @@ spring:
     test-on-borrow: true
     test-while-idle: true
 
+  #不加此配置，会报：org.springframework.amqp.AmqpConnectException: java.net.ConnectException: Connection refused: connect
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 172.16.0.29
+    port: 5672
+
 smallflow:
   redis:
     host: 172.16.2.54
