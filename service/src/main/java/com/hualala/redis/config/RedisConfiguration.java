@@ -22,25 +22,25 @@ public class RedisConfiguration {
     private Logger logger = LoggerFactory.getLogger(RedisConfiguration.class);
 
     @Autowired
-    private RedisProperties smallFlowRedisProperties;
+    private RedisProperties redisProperties;
 
-    @Bean(name = "smallFlowRedisConnectionFactory")
+    @Bean(name = "redisConnectionFactory")
     public JedisConnectionFactory smallFlowRedisConnectionFactory() {
         JedisConnectionFactory factory = new JedisConnectionFactory();
         JedisPoolConfig config = new JedisPoolConfig();
-        config.setMaxIdle(smallFlowRedisProperties.getMaxIdle());
-        config.setMinIdle(smallFlowRedisProperties.getMinIdle());
-        config.setMaxTotal(smallFlowRedisProperties.getMaxActive());
+        config.setMaxIdle(redisProperties.getMaxIdle());
+        config.setMinIdle(redisProperties.getMinIdle());
+        config.setMaxTotal(redisProperties.getMaxActive());
         factory.setPoolConfig(config);
-        factory.setHostName(smallFlowRedisProperties.getHost());
-        factory.setPort(smallFlowRedisProperties.getPort());
-        factory.setDatabase(smallFlowRedisProperties.getDb());
-        factory.setTimeout(smallFlowRedisProperties.getMaxWait()); //设置连接超时时间
+        factory.setHostName(redisProperties.getHost());
+        factory.setPort(redisProperties.getPort());
+        factory.setDatabase(redisProperties.getDb());
+        factory.setTimeout(redisProperties.getMaxWait()); //设置连接超时时间
         return factory;
     }
 
-    @Bean(name = "smallFlowRedisTemplate")
-    public RedisTemplate<String, String> smallFlowRedisTemplate(@Qualifier("smallFlowRedisConnectionFactory")RedisConnectionFactory factory) {
+    @Bean(name = "redisTemplate")
+    public RedisTemplate<String, String> smallFlowRedisTemplate(@Qualifier("redisConnectionFactory")RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
         setSerializer(template); //设置序列化工具
         return template;

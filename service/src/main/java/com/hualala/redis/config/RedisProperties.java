@@ -13,24 +13,24 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties
 public class RedisProperties {
 
-    @Value("${smallflow.redis.host}")
+    @Value("${redis.host}")
     private String host;
 
-    @Value("${smallflow.redis.port}")
+    @Value("${redis.port}")
     private Integer port;
 
-    @Value("${smallflow.redis.db}")
+    @Value("${redis.db}")
     private Integer db;
 
-    @Value("${smallflow.redis.pool.maxActive}")
+    @Value("${redis.pool.maxActive}")
     private Integer maxActive;
 
-    @Value("${smallflow.redis.pool.maxIdle}")
+    @Value("${redis.pool.maxIdle}")
     private Integer maxIdle;
 
-    @Value("${smallflow.redis.pool.minIdle}")
+    @Value("${redis.pool.minIdle}")
     private Integer minIdle;
 
-    @Value("${smallflow.redis.pool.maxWait}")
+    @Value("${redis.pool.maxWait}")
     private Integer maxWait;
 }

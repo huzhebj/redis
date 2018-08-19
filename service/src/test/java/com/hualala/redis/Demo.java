@@ -10,18 +10,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.concurrent.TimeUnit;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @EnableAutoConfiguration( exclude = RedisAutoConfiguration.class)
 @SpringBootTest
 public class Demo {
 
     @Autowired
-    @Qualifier("smallFlowRedisTemplate")
-    private RedisTemplate<String, String> smallFlowRedisTemplate;
+    @Qualifier("redisTemplate")
+    private RedisTemplate<String, String> redisTemplate;
 
     @Test
     public void demo() {
-        String s1 = smallFlowRedisTemplate.opsForValue().get("SHOP_MIAOFU_BIND_OPENIDS_76058319");
-        System.out.println("2018年，我在哗啦啦工作");
+        redisTemplate.opsForValue().set("redis1","123456",10, TimeUnit.MINUTES);
+        String redis1 = redisTemplate.opsForValue().get("redis1");
+        System.out.println(redis1);
     }
 }
