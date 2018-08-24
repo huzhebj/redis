@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class RedisStringUtilsDemo {
+public class RedisStringHandlerDemo {
     @Autowired
     private RedisStringHandler redisStringHandler;
 
